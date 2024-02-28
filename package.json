@@ -1,27 +1,29 @@
 {
-    "name": "js-atm-1",
-    "version": "1.0.0",
-    "description": "",
-    "type": "module",
-    "main": "index.js",
-    "scripts": {
-        "test": "mocha",
-        "coverage": "c8 npm test",
-        "lint": "eslint ./ --fix"
-    },
-    "keywords": [
-        "valeriya.anatolyevna@gmail.com"
-    ],
-    "author": "",
-    "license": "ISC",
-    "devDependencies": {
-        "eslint": "^8.57.0",
-        "eslint-config-google": "^0.14.0"
-    },
-    "dependencies": {
-        "c8": "^9.1.0",
-        "chai": "^5.1.0",
-        "mocha": "^10.3.0",
-        "mochawesome": "^7.1.3"
-    }
+  "name": "js-atm-1",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "coverage": "c8 npm test",
+    "lint": "eslint ./ --fix",
+    "prepare": "husky"
+  },
+  "keywords": [
+    "valeriya.anatolyevna@gmail.com"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-google": "^0.14.0",
+    "husky": "^9.0.11"
+  },
+  "dependencies": {
+    "c8": "^9.1.0",
+    "chai": "^5.1.0",
+    "mocha": "^10.3.0",
+    "mochawesome": "^7.1.3"
+  }
 }
