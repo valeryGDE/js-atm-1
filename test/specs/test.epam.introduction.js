@@ -1,10 +1,17 @@
 import { expect, assert } from "chai";
 
+
 describe('WebdriverIO Introduction', () => {
     before(async () => {
         await browser.url('/');
         const acceptCookies = await $("button[id*='onetrust-accept']");
         await acceptCookies.click();
+    });
+
+    beforeEach(async () => {
+        const logo = await $("a[class*= 'desktop-logo']");
+        await logo.click();
+        await browser.pause(500)
     });
 
     it('navigation to services tab', async () => {
@@ -27,7 +34,6 @@ describe('WebdriverIO Introduction', () => {
         await aboutTab.moveTo();
         await browser.pause(500);
         const colorAfterHover = await aboutTab.getCSSProperty('color');
-        console.log(colorAfterHover.parsed.hex)
         expect(colorBeforeHover.parsed.hex).not.to.equal(colorAfterHover.parsed.hex);
     });
 
