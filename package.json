@@ -18,7 +18,11 @@
         "@wdio/local-runner": "^8.32.3",
         "@wdio/mocha-framework": "^8.32.3",
         "@wdio/spec-reporter": "^8.32.2",
-        "rimraf": "^5.0.5"
+        "chromedriver": "^122.0.4",
+        "geckodriver": "^4.3.3",
+        "rimraf": "^5.0.5",
+        "wdio-chromedriver-service": "^8.1.1",
+        "wdio-geckodriver-service": "^5.0.2"
     },
     "dependencies": {
         "@wdio/dot-reporter": "^8.32.2",
