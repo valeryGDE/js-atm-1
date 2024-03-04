@@ -24,6 +24,7 @@ mochawesome-report
 junit-reports
 allure-results
 allure-report
+artifacts
 
 # Coverage directory used by tools like istanbul
 coverage
