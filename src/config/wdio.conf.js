@@ -25,7 +25,7 @@ export const config = {
     // of the config file unless it's absolute.
     //
     specs: [
-        './test/specs/**/*.js'
+        '../tests/**/*.js'
     ],
     // Patterns to exclude.
     exclude: [
@@ -53,11 +53,11 @@ export const config = {
     // https://saucelabs.com/platform/platform-configurator
     //
     capabilities: [
-        {
-            maxInstances: 1,
-            browserName: 'firefox',
-            acceptInsecureCerts: true
-        },
+        // {
+        //     maxInstances: 1,
+        //     browserName: 'firefox',
+        //     acceptInsecureCerts: true
+        // },
         {
             maxInstances: 1,
             browserName: 'chrome',
@@ -138,6 +138,7 @@ export const config = {
     reporters: [
         'dot',
         'allure',
+        'spec',
         ['junit', {
             outputDir: './junit-reports/',
             outputFileFormat: function (options) {
