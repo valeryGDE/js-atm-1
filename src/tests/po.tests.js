@@ -1,21 +1,6 @@
 import pages from "../po/pages/index.js";
 
 
-browser.addCommand('waitForVisibleAndClick', async function () {
-    await browser.waitUntil(
-        async () => this.isDisplayedInViewport(),
-        {
-            timeout: 3000,
-            timeoutMsg: 'element is not displayed in viewport after 3s'
-        }
-    );
-    await browser.execute(function (el) {
-        el.style.border = '3px solid red';
-    }, this);
-    await this.click();
-}, true);
-
-
 describe('WebdriverIO Commands', () => {
     before(async () => {
         await pages('home').open();

@@ -25,7 +25,7 @@ export const config = {
     // of the config file unless it's absolute.
     //
     specs: [
-        '../tests/**/*.js'
+        '../features/**/*.feature'
     ],
     // Patterns to exclude.
     exclude: [
@@ -120,7 +120,7 @@ export const config = {
     //
     // Make sure you have the wdio adapter package for the specific framework installed
     // before running any tests.
-    framework: 'mocha',
+    framework: 'cucumber',
 
     //
     // The number of times to retry the entire specfile when it fails as a whole
@@ -157,11 +157,31 @@ export const config = {
     },
 
 
-    // Options to be passed to Mocha.
-    // See the full list at http://mochajs.org/
-    mochaOpts: {
-        ui: 'bdd',
-        timeout: 60000
+    //
+    // If you are using Cucumber you need to specify the location of your step definitions.
+    cucumberOpts: {
+        // <string[]> (file/dir) require files before executing features
+        require: ['./src/step-definitions/*.steps.js', './src/step-definitions/hooks.js'],
+        // <boolean> show full backtrace for errors
+        backtrace: false,
+        // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
+        requireModule: [],
+        // <boolean> invoke formatters without executing steps
+        dryRun: false,
+        // <boolean> abort the run on first failure
+        failFast: false,
+        // <boolean> hide step definition snippets for pending steps
+        snippets: true,
+        // <boolean> hide source uris
+        source: true,
+        // <boolean> fail if there are any undefined or pending steps
+        strict: false,
+        // <string> (expression) only execute the features or scenarios with tags matching the expression
+        tagExpression: '@test',
+        // <number> timeout for step definitions
+        timeout: 60000,
+        // <boolean> Enable this config to treat undefined definitions as warnings.
+        ignoreUndefinedDefinitions: false,
     },
 
     //
@@ -220,8 +240,22 @@ export const config = {
      * @param {Array.<String>} specs        List of spec file paths that are to be run
      * @param {object}         browser      instance of created browser/device session
      */
-    // before: function (capabilities, specs) {
-    // },
+    before: function (capabilities, specs) {
+        browser.addCommand('waitForVisibleAndClick', async function () {
+            await browser.waitUntil(
+                async () => this.isDisplayedInViewport(),
+                {
+                    timeout: 3000,
+                    timeoutMsg: 'element is not displayed in viewport after 3s'
+                }
+            );
+            await browser.execute(function (el) {
+                el.style.border = '3px solid red';
+            }, this);
+            await this.click();
+        }, true);
+    },
+
     /**
      * Runs before a WebdriverIO command gets executed.
      * @param {string} commandName hook command name
